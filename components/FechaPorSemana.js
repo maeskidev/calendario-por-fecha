@@ -386,3 +386,7 @@ class FechaPorSemana extends HTMLElement {
 }
 
 customElements.define("fecha-por-semana", FechaPorSemana)
+
+export {
+    FechaPorSemana as FechaPorSemana,
+  };
