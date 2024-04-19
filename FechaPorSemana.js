@@ -11,6 +11,12 @@ class FechaPorSemana extends HTMLElement {
             this.init();
         });
         this.fechasString=this.getAttribute("fechas")
+        // Escucha el cambio de fechas dentro del componente
+        this.addEventListener('fechas-cambiadas', (e) => {
+          const fechaSeleccionada = e.detail; // Obtén la fecha seleccionada
+          console.log(`Fecha seleccionada: ${fechaSeleccionada}`);
+          // Aquí puedes realizar otras acciones según la fecha seleccionada
+        });
     }
 
     init() {
@@ -152,6 +158,10 @@ class FechaPorSemana extends HTMLElement {
                        elementoFecha.seleccionado = true
                     //    document.getElementsByTagName("fecha-por-semana").setAttribute("ejemplo", e.target.value)
                        document.getElementsByTagName("fecha-por-semana")[0].value = e.target.value.fecha
+                       const eventoFechasCambiadas = new CustomEvent('fechas-cambiadas', {
+                        detail: e.target.value.fecha,
+                      });
+                      this.dispatchEvent(eventoFechasCambiadas);
                    }else{
                     elementoFecha.seleccionado = false
                    }
@@ -265,18 +275,15 @@ class FechaPorSemana extends HTMLElement {
       </footer>
 
       <style>
-      body{
-        background-color: #eee;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-      }
       .fechas-container{
         /* border: solid; */
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
-        width: 790px;
+        width: auto;
         height: 209px;
         background-color: #FFF;
         padding: 10px 20px 20px 20px;
+        border-radius: 10px;
       }
       
       .fechas-header{
