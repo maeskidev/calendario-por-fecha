@@ -1,4 +1,4 @@
-class FechaPorSemana extends HTMLElement {
+export default class FechaPorSemana extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: "open" });
@@ -393,7 +393,3 @@ class FechaPorSemana extends HTMLElement {
 }
 
 customElements.define("fecha-por-semana", FechaPorSemana)
-
-export {
-    FechaPorSemana as FechaPorSemana,
-  };
